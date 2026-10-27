@@ -2,23 +2,40 @@ import { route, translate, values } from '../document-helpers.tsx';
 import Settings from './Settings.tsx';
 import MirrorLinks from './MirrorLinks.tsx';
 
+// Simple bubble logo for r2r3
+const R2R3Logo = (props: { size?: number; class?: string }) => (
+	<svg
+		width={props.size || 32}
+		height={props.size || 32}
+		viewBox="0 0 64 64"
+		fill="none"
+		class={props.class}
+		aria-hidden="true"
+	>
+		<circle cx="32" cy="32" r="30" fill="url(#glow)" opacity="0.25" />
+		<circle cx="26" cy="28" r="16" fill="#ff2d55" opacity="0.9" />
+		<circle cx="38" cy="36" r="14" fill="#ff6b8a" opacity="0.85" />
+		<circle cx="32" cy="22" r="10" fill="#ff9eb5" opacity="0.7" />
+		<circle cx="18" cy="42" r="5" fill="#ff2d55" opacity="0.6" />
+		<circle cx="46" cy="20" r="4" fill="#ff6b8a" opacity="0.5" />
+		<circle cx="24" cy="24" r="3" fill="white" opacity="0.35" />
+		<defs>
+			<radialGradient id="glow" cx="50%" cy="50%" r="50%">
+				<stop offset="0%" stop-color="#ff2d55" stop-opacity="0.6" />
+				<stop offset="100%" stop-color="#ff2d55" stop-opacity="0" />
+			</radialGradient>
+		</defs>
+	</svg>
+);
+
 export default function Header() {
 	const overview = route(values.usingSEO ? '/' : '/overview');
 	return (
 		<>
 			<div class="brand-logo-container">
-				<div
-					class="logo"
-					role="img"
-					aria-label={translate('header.logoLabel')}
-				></div>
-				<a
-					href={route('/')}
-					class="brand pulse"
-					title={translate('header.homeTitle')}
-				>
-					{' '}
-					InvisiProxy v8.2.x{' '}
+				<a href={route('/')} class="brand pulse" title={translate('header.homeTitle')}>
+					<R2R3Logo size={34} class="header-logo" />
+					<span style="margin-left: 0.6rem; font-weight: 700;">r2r3</span>
 				</a>
 			</div>
 			<div class="navbar-group">
@@ -101,9 +118,7 @@ export default function Header() {
 								<li>
 									<a
 										href={route('/credits')}
-										title={translate(
-											'header.credits.title'
-										)}
+										title={translate('header.credits.title')}
 									>
 										{translate('header.credits.label')}
 									</a>
@@ -111,9 +126,7 @@ export default function Header() {
 								<li>
 									<a
 										href={route('/privacy')}
-										title={translate(
-											'header.privacy.title'
-										)}
+										title={translate('header.privacy.title')}
 									>
 										{translate('header.privacy.label')}
 									</a>
@@ -133,9 +146,7 @@ export default function Header() {
 							title={translate('header.donate')}
 						>
 							<i class="fab fa-patreon" aria-hidden="true"></i>
-							<span class="sr-only">
-								{translate('header.donate')}
-							</span>
+							<span class="sr-only">{translate('header.donate')}</span>
 						</a>
 					</li>
 					<li class="dropdown-parent smenu">
@@ -176,44 +187,28 @@ export default function Header() {
 			<div class="mobile-overlay">
 				<ul class="navbar-1">
 					<li>
-						<a href={overview}>
-							{translate('header.overview.label')}
-						</a>
+						<a href={overview}>{translate('header.overview.label')}</a>
 					</li>
 					<li>
-						<a href={route('/browsing')}>
-							{translate('header.browse.label')}
-						</a>
+						<a href={route('/browsing')}>{translate('header.browse.label')}</a>
 					</li>
 					<li>
-						<a href={route('/partners')}>
-							{translate('header.partners.label')}
-						</a>
+						<a href={route('/partners')}>{translate('header.partners.label')}</a>
 					</li>
 					<li>
-						<a href={route('/apps')}>
-							{translate('header.apps.mobileLabel')}
-						</a>
+						<a href={route('/apps')}>{translate('header.apps.mobileLabel')}</a>
 					</li>
 					<li>
-						<a href={route('/documentation')}>
-							{translate('header.docs.label')}
-						</a>
+						<a href={route('/documentation')}>{translate('header.docs.label')}</a>
 					</li>
 					<li>
-						<a href={route('/questions')}>
-							{translate('header.faq.label')}
-						</a>
+						<a href={route('/questions')}>{translate('header.faq.label')}</a>
 					</li>
 					<li>
-						<a href={route('/credits')}>
-							{translate('header.credits.label')}
-						</a>
+						<a href={route('/credits')}>{translate('header.credits.label')}</a>
 					</li>
 					<li>
-						<a href={route('/privacy')}>
-							{translate('header.privacy.mobileLabel')}
-						</a>
+						<a href={route('/privacy')}>{translate('header.privacy.mobileLabel')}</a>
 					</li>
 				</ul>
 			</div>
