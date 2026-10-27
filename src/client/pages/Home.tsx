@@ -62,6 +62,30 @@ const links = {
 	underline: () => <span class="underline-svg"></span>,
 };
 
+// Minimalist logo
+const SimpleLogo = (props: { size?: number; class?: string }) => (
+	<svg
+		width={props.size || 48}
+		height={props.size || 48}
+		viewBox="0 0 64 64"
+		fill="none"
+		class={props.class}
+		aria-hidden="true"
+	>
+		<ellipse cx="32" cy="56" rx="18" ry="4" fill="currentColor" opacity="0.15" />
+		<path
+			d="M32 10C21.5 10 13 18.5 13 29v22c0 5.5 3.5 9 9 9h20c5.5 0 9-3.5 9-9V29c0-10.5-8.5-19-19-19z"
+			fill="currentColor"
+		/>
+		<circle cx="24" cy="30" r="3.5" fill="#0a0a0f" />
+		<circle cx="40" cy="30" r="3.5" fill="#0a0a0f" />
+		<path
+			d="M22 12h20a2 2 0 0 0 0-4H22a2 2 0 0 0 0 4z"
+			fill="#ff2d55"
+		/>
+	</svg>
+);
+
 export default function Home() {
 	return (
 		<>
@@ -70,6 +94,7 @@ export default function Home() {
 			<nav id="header" class="fullwidth" aria-label="Main navigation">
 				<Header />
 			</nav>
+
 			{values.showSplash && (
 				<div id="banner" class="fullwidth">
 					<p class="text-center">
@@ -77,308 +102,191 @@ export default function Home() {
 					</p>
 				</div>
 			)}
+
 			<div id="mainbody" class="fullwidth">
 				<div id="background" class="fullwidth"></div>
-				<section
-					class="home-grid-container"
-					aria-label="Home Grid Container"
-				>
+
+				{/* Hero */}
+				<section class="home-grid-container" aria-label="Home Grid Container">
 					<div class="home-text">
-						<h1>
+						<div class="logo-row">
+							<SimpleLogo size={56} class="hero-logo" />
+						</div>
+						<h1 class="headline">
 							<span>{translate('home.headline')}</span>
 						</h1>
-						<h1>{translate('home.tagline')}</h1>
-						<a class="homebutton" href="#scrollfix">
-							{translate('home.browseNow')}
-						</a>
-						<a class="homebutton mobile" href="#scrollfix">
-							{translate('home.browseNow')}
-						</a>
+						<h2 class="tagline">{translate('home.tagline')}</h2>
+						<div class="hero-actions">
+							<a class="homebutton primary" href="#scrollfix">
+								{translate('home.browseNow')}
+							</a>
+							<a class="homebutton secondary mobile" href="#scrollfix">
+								{translate('home.browseNow')}
+							</a>
+						</div>
 					</div>
-					<Keywords />
-					<section
-						class="mac-window"
-						aria-label="Command Line Instructions"
-					>
+
+					<section class="mac-window" aria-label="Command Line Instructions">
 						<div class="mac-title-bar">
 							<div class="mac-buttons">
 								<span class="mac-close"></span>
 								<span class="mac-minimize"></span>
 								<span class="mac-maximize"></span>
 							</div>
+							<span class="mac-title">InvisiProxy LTS</span>
 						</div>
 						<div class="mac-content">
 							<p>
 								<span class="cmd">
-									{'git clone --recurse-submodules'}
+									git clone --recurse-submodules
 									<span class="url">
 										{' '}
 										https://github.com/InvisiProxy/InvisiProxyLTS.git
 									</span>
 								</span>
 								<br />
-								<span class="cmd">
-									{'cd '}
-									InvisiProxyLTS{' '}
-								</span>
+								<span class="cmd">cd InvisiProxyLTS</span>
 								<br />
-								<span class="comment">
-									{translate('home.terminal.setup')}
-								</span>
+								<span class="comment">{translate('home.terminal.setup')}</span>
 								<br />
-								<span class="cmd">
-									{'pnpm run fresh-start\r'}
-								</span>
+								<span class="cmd">pnpm run fresh-start</span>
 								<br />
-								<span class="comment">
-									{translate('home.terminal.start')}
-								</span>
+								<span class="comment">{translate('home.terminal.start')}</span>
 								<br />
-								<span class="cmd">{'pnpm start\r'}</span>
+								<span class="cmd">pnpm start</span>
 								<br />
-								<span class="comment">
-									{translate('home.terminal.dev')}
-								</span>
+								<span class="comment">{translate('home.terminal.dev')}</span>
 								<br />
-								<span class="cmd">{'pnpm dev\r'}</span>
+								<span class="cmd">pnpm dev</span>
 								<br />
 								<br />
 								<span class="comment">
-									InvisiProxy LTS
-									{` v${values.version} // master`}
+									InvisiProxy LTS v{values.version} // master
 								</span>
 								<br />
-								<span class="comment">Node.js v26.x</span>
-								<br />
-								<span class="comment">Solid JS v1.9.17</span>
-								<br />
-								<br />
-								<span class="downarrowgroup">
-									<i class="fas fa-level-down-alt"></i>
-									<i class="fas fa-level-down-alt"></i>
-									<i class="fas fa-level-down-alt"></i>
-								</span>
+								<span class="comment">Node.js v26.x · Solid JS v1.9.17</span>
 							</p>
 						</div>
 					</section>
 				</section>
-				<Keywords />
+
 				<div id="scrollfix">­</div>
-				<div data-aos="fade-right" class="hero-grid-container">
-					<div class="box-hero">
+
+				{/* Feature Hero */}
+				<div data-aos="fade-up" class="hero-grid-container">
+					<div class="box-hero glass">
 						<div class="hero-content">
 							<div class="hero-text-wrap">
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.free.title')}
-									</h2>
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.free.title')}
+										</h3>
+									</div>
+									<p>
+										<Translation id="home.free.body" />
+									</p>
 								</div>
-								<p>
-									<Translation id="home.free.body" />
-								</p>
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.fast.title')}
-									</h2>
+
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.fast.title')}
+										</h3>
+									</div>
+									<p>{translate('home.fast.body')}</p>
 								</div>
-								<p>{translate('home.fast.body')}</p>
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.practical.title')}
-									</h2>
+
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.practical.title')}
+										</h3>
+									</div>
+									<p>
+										<Translation id="home.practical.body" />
+									</p>
 								</div>
-								<p>
-									<Translation id="home.practical.body" />
-								</p>
 							</div>
 						</div>
+
 						<div class="image-container-hero">
-							<img
-								class="hero"
-								src={route('/assets/img/logo-light.webp')}
-								alt={translate('home.logoAlt')}
-							/>
-							<h1>InvisiProxy LTS</h1>
-							<h2>{translate('home.heroSubtitle')}</h2>
-							<a
-								class="fancybutton glowbutton"
-								href={route('/browsing')}
-							>
-								{translate('home.browseNow')}
-							</a>
-							<a
-								class="fancybutton glowbutton"
-								href={route('/patreon')}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								{translate('home.donate')}
-							</a>
+							<div class="logo-hero-wrap">
+								<SimpleLogo size={120} />
+							</div>
+							<h2>InvisiProxy LTS</h2>
+							<p class="hero-sub">{translate('home.heroSubtitle')}</p>
+							<div class="hero-buttons">
+								<a class="fancybutton primary" href={route('/browsing')}>
+									{translate('home.browseNow')}
+								</a>
+								<a
+									class="fancybutton secondary"
+									href={route('/patreon')}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{translate('home.donate')}
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
-				<Keywords />
-				<div data-aos="fade-right" class="carousel-container">
+
+				{/* Dependency Carousel */}
+				<div data-aos="fade-up" class="carousel-container">
 					<div class="carousel-wrapper">
 						<div class="carousel">
 							<div class="carousel-inner">
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/vite.webp')}
-										alt="Vite"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/solid.webp')}
-										alt="SolidJS"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route(
-											'/assets/img/nordtheme.webp'
-										)}
-										alt="Nord Theme"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/nodejs.webp')}
-										alt="Nodejs"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route(
-											'/assets/img/fontawesome.webp'
-										)}
-										alt="Font Awesome"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/scramjet.png')}
-										alt="Scramjet"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/vite.webp')}
-										alt="Vite"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/solid.webp')}
-										alt="SolidJS"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route(
-											'/assets/img/nordtheme.webp'
-										)}
-										alt="Nord Theme"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/nodejs.webp')}
-										alt="Nodejs"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route(
-											'/assets/img/fontawesome.webp'
-										)}
-										alt="Font Awesome"
-									/>
-								</div>
-								<div class="dependencylogo">
-									<img
-										loading="lazy"
-										src={route('/assets/img/scramjet.png')}
-										alt="Scramjet"
-									/>
-								</div>
+								{['vite', 'solid', 'nordtheme', 'nodejs', 'fontawesome', 'scramjet'].map(
+									(name) => (
+										<div class="dependencylogo">
+											<img
+												loading="lazy"
+												src={route(`/assets/img/${name}.webp`)}
+												alt={name}
+											/>
+										</div>
+									)
+								)}
+								{['vite', 'solid', 'nordtheme', 'nodejs', 'fontawesome', 'scramjet'].map(
+									(name) => (
+										<div class="dependencylogo">
+											<img
+												loading="lazy"
+												src={route(`/assets/img/${name}.webp`)}
+												alt={name}
+											/>
+										</div>
+									)
+								)}
 							</div>
 						</div>
 					</div>
 				</div>
-				<Keywords />
-				<div class="text-center">
+
+				{/* Designed with Privacy */}
+				<div class="text-center section-header">
 					<div class="splashstroke">
-						<div>
-							<h1 class="splashstrokeheader">
-								<Translation
-									id="home.designedWithPrivacy"
-									tags={links}
-								/>
-							</h1>
-						</div>
-						<svg
-							aria-hidden="true"
-							class="underline-svg"
-							viewBox="0 0 390 55"
-							fill="none"
-						>
-							<defs>
-								<linearGradient
-									gradientUnits="userSpaceOnUse"
-									x1="192.539"
-									y1="1.537"
-									x2="192.539"
-									y2="51.098"
-									id="gradient-0"
-									gradientTransform="matrix(-0.001215, 0.999999, -7.795296, -0.009463, 402.484802, -163.600372)"
-								>
-									<stop
-										offset="0"
-										style="stop-color: rgba(135, 149, 221, 1)"
-									></stop>
-									<stop
-										offset="1"
-										style="stop-color: rgba(56, 80, 198, 1)"
-									></stop>
-								</linearGradient>
-							</defs>
-							<path
-								style={
-									'\n                stroke: url(#gradient-0);\n                stroke-width: 2px;\n                stroke-linecap: round;\n              '
-								}
-								d="M 3 8.997 C 3 8.997 386.2758229569146 -1.5119911685214125 386.872 5.292 C 387.1840859001393 8.853743500517725 283.1432491171007 17.09919545317559 283.106 22.586 C 283.07461319934777 27.209283823450303 356.0628379238926 30.04524568361604 356.607 35.864 C 357.0292218177662 40.3788405823717 314.606 51.924 314.606 51.924"
-							></path>
-						</svg>
+						<h2 class="splashstrokeheader">
+							<Translation id="home.designedWithPrivacy" tags={links} />
+						</h2>
+						<div class="simple-underline"></div>
 					</div>
 				</div>
-				<Keywords />
+
+				{/* Info Cards */}
 				<div class="grid-container">
-					<div data-aos="fade-right" id="info" class="box-card">
+					<div data-aos="fade-right" id="info" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.overview.title')}</h1>
+								<h3>{translate('home.overview.title')}</h3>
 								<p>{translate('home.overview.body')}</p>
 								<p>
-									<Translation
-										id="home.overview.donate"
-										tags={links}
-									/>
+									<Translation id="home.overview.donate" tags={links} />
 								</p>
 							</div>
 						</div>
@@ -390,16 +298,14 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div data-aos="fade-left" class="box-card">
+
+					<div data-aos="fade-left" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.intent.title')}</h1>
+								<h3>{translate('home.intent.title')}</h3>
 								<p>{translate('home.intent.body')}</p>
 								<p>
-									<Translation
-										id="home.intent.palette"
-										tags={links}
-									/>
+									<Translation id="home.intent.palette" tags={links} />
 								</p>
 							</div>
 						</div>
@@ -411,15 +317,13 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div data-aos="fade-right" class="box-card">
+
+					<div data-aos="fade-right" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.usage.title')}</h1>
+								<h3>{translate('home.usage.title')}</h3>
 								<p>
-									<Translation
-										id="home.usage.body"
-										tags={links}
-									/>
+									<Translation id="home.usage.body" tags={links} />
 								</p>
 							</div>
 						</div>
@@ -431,10 +335,11 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div data-aos="fade-left" class="box-card">
+
+					<div data-aos="fade-left" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.apps.title')}</h1>
+								<h3>{translate('home.apps.title')}</h3>
 								<p>{translate('home.apps.body')}</p>
 							</div>
 						</div>
@@ -446,15 +351,13 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div data-aos="fade-right" class="box-card">
+
+					<div data-aos="fade-right" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.hosting.title')}</h1>
+								<h3>{translate('home.hosting.title')}</h3>
 								<p>
-									<Translation
-										id="home.hosting.body"
-										tags={links}
-									/>
+									<Translation id="home.hosting.body" tags={links} />
 								</p>
 							</div>
 						</div>
@@ -467,18 +370,16 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div data-aos="fade-left" class="box-card">
+
+					<div data-aos="fade-left" class="box-card glass">
 						<div class="content">
 							<div class="text-wrap">
-								<h1>{translate('home.contributing.title')}</h1>
+								<h3>{translate('home.contributing.title')}</h3>
 								<p>
 									<Translation id="home.contributing.body" />
 								</p>
 								<p>
-									<Translation
-										id="home.contributing.start"
-										tags={links}
-									/>
+									<Translation id="home.contributing.start" tags={links} />
 								</p>
 							</div>
 						</div>
@@ -487,71 +388,79 @@ export default function Home() {
 								class="hero"
 								src={route('/assets/img/git.webp')}
 								alt={translate('home.contributing.imageAlt')}
-								title={translate(
-									'home.contributing.imageTitle'
-								)}
+								title={translate('home.contributing.imageTitle')}
 							/>
 						</div>
 					</div>
 				</div>
-				<div data-aos="fade-left" class="hero-grid-container">
-					<div class="box-hero">
+
+				{/* Unrestricted Section */}
+				<div data-aos="fade-up" class="hero-grid-container">
+					<div class="box-hero glass">
 						<div class="hero-content">
 							<div class="hero-text-wrap">
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.bypass.title')}
-									</h2>
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.bypass.title')}
+										</h3>
+									</div>
+									<p>
+										<Translation id="home.bypass.body" />
+									</p>
 								</div>
-								<p>
-									<Translation id="home.bypass.body" />
-								</p>
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.freeProxy.title')}
-									</h2>
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.freeProxy.title')}
+										</h3>
+									</div>
+									<p>
+										<Translation id="home.freeProxy.body" />
+									</p>
 								</div>
-								<p>
-									<Translation id="home.freeProxy.body" />
-								</p>
-								<div class="brand-logo-container">
-									<i class="far fa-window-restore palered"></i>
-									<h2 class="hero-content-header">
-										{translate('home.tor.title')}
-									</h2>
+								<div class="feature-block">
+									<div class="brand-logo-container">
+										<span class="accent-dot"></span>
+										<h3 class="hero-content-header">
+											{translate('home.tor.title')}
+										</h3>
+									</div>
+									<p>
+										<Translation id="home.tor.body" />
+									</p>
 								</div>
-								<p>
-									<Translation id="home.tor.body" />
-								</p>
 							</div>
 						</div>
-						<Keywords />
 						<div class="image-container-hero">
-							<h1>{translate('home.unrestricted')}</h1>
-							<a
-								class="fancybutton glowbutton"
-								href={route('/browsing')}
-							>
+							<h2 class="big-title">{translate('home.unrestricted')}</h2>
+							<a class="fancybutton primary large" href={route('/browsing')}>
 								{translate('home.bypassNow')}
 							</a>
 						</div>
 					</div>
 				</div>
+
+				{/* Closing */}
 				<div class="box-home text-center splashend">
-					<h1>{translate('home.closing')}</h1>
-					<a class="homebutton" href="#scrollfix">
-						{translate('home.tryFree')}
-					</a>
-					<a class="homebutton mobile" href={route('/browsing')}>
-						{translate('home.tryFree')}
-					</a>
+					<h2>{translate('home.closing')}</h2>
+					<div class="closing-actions">
+						<a class="homebutton primary" href="#scrollfix">
+							{translate('home.tryFree')}
+						</a>
+						<a class="homebutton secondary mobile" href={route('/browsing')}>
+							{translate('home.tryFree')}
+						</a>
+					</div>
 				</div>
 			</div>
+
 			<div id="footer" class="fullwidth">
 				<Footer />
 			</div>
+
 			<Keywords />
 			<Inline>
 				<script src={route('assets/js/card.js', 'inline')} />
@@ -576,10 +485,7 @@ export function Head() {
 			</SEO>
 			<title>{translate('home.title')}</title>
 			<SEO>
-				<meta
-					name="description"
-					content={translate('home.description')}
-				/>
+				<meta name="description" content={translate('home.description')} />
 				<meta
 					name="Keywordss"
 					content="web proxy, free web proxy, proxy web browser, proxy web, proxy web page, proxy for web, secure proxy, unblock websites, free proxy, bypass censorship, unblock Chromebook, proxy service, online security, private browsing, unblock social media, access blocked content, proxy server, internet freedom, unblock at school, unblock at work"
@@ -598,10 +504,7 @@ export function Head() {
 				content={route('assets/img/hero.webp')}
 			/>
 			<SEO>
-				<meta
-					property="og:image:alt"
-					content={translate('common.logoAlt')}
-				/>
+				<meta property="og:image:alt" content={translate('common.logoAlt')} />
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:site" content="@titaniumnetdev" />
 				<meta name="twitter:creator" content="@titaniumnetdev" />
@@ -610,16 +513,13 @@ export function Head() {
 					name="twitter:description"
 					content={translate('home.twitterDescription')}
 				/>
-				<meta
-					name="twitter:image"
-					content={route('assets/img/hero.webp')}
-				/>
+				<meta name="twitter:image" content={route('assets/img/hero.webp')} />
 				<meta
 					name="twitter:image:alt"
 					content={translate('common.logoAlt')}
 				/>
 			</SEO>
-			<meta name="msapplication-TileColor" content="#b4213b" />
+			<meta name="msapplication-TileColor" content="#ff2d55" />
 			<meta
 				name="msapplication-TileImage"
 				content={route('assets/ico/ms-icon-144x144.png')}
@@ -630,10 +530,7 @@ export function Head() {
 				content="black-translucent"
 			/>
 			<SEO>
-				<meta
-					name="apple-mobile-web-app-title"
-					content="InvisiProxy LTS"
-				/>
+				<meta name="apple-mobile-web-app-title" content="InvisiProxy LTS" />
 			</SEO>
 			<HeadContent />
 			<ParticlesScript />
@@ -642,7 +539,7 @@ export function Head() {
 			<link
 				rel="mask-icon"
 				href={route('assets/svg/new.svg')}
-				color="#b4213b"
+				color="#ff2d55"
 			/>
 			<link rel="manifest" href={route('manifest.json')} />
 			<meta name="mobile-web-app-capable" content="yes" />
@@ -655,7 +552,6 @@ export function Head() {
 						'",\n            "publisher": {\n              "@id": "https://invisiproxy.com/#organization"\n            }\n          },\n          {\n            "@type": "Organization",\n            "@id": "https://invisiproxy.com/#organization",\n            "name": "InvisiProxy LTS",\n            "alternateName": "InvisiProxy",\n            "url": "https://invisiproxy.com/",\n            "logo": {\n              "@type": "ImageObject",\n              "@id": "https://invisiproxy.com/#logo",\n              "url": "https://invisiproxy.com/assets/img/logo_github.png",\n              "contentUrl": "https://invisiproxy.com/assets/img/logo_github.png",\n              "width": 878,\n              "height": 1262,\n              "caption": "InvisiProxy LTS"\n            },\n            "image": {\n              "@id": "https://invisiproxy.com/#logo"\n            },\n            "description": "InvisiProxy LTS is an open-source web proxy project that helps people bypass web filters and regional censorship while keeping their browsing private.",\n            "email": "8xz62b0ce@mozmail.com",\n            "foundingDate": "2020",\n            "founder": {\n              "@type": "Person",\n              "name": "Quite A Fancy Emerald",\n              "url": "https://github.com/QuiteAFancyEmerald"\n            },\n            "contactPoint": {\n              "@type": "ContactPoint",\n              "contactType": "customer support",\n              "email": "8xz62b0ce@mozmail.com",\n              "url": "https://invisiproxy.com/credits",\n              "availableLanguage": [\n                "English"\n              ]\n            },\n            "sameAs": [\n              "https://github.com/InvisiProxy/InvisiProxyLTS",\n              "https://www.patreon.com/invisiproxy"\n            ]\n          }\n        ]\n      }\n    '
 					}
 				/>
-				{/* These answers are only written in English. */}
 				<Show when={values.locale === 'en'}>
 					<script
 						type="application/ld+json"
