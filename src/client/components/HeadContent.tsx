@@ -11,6 +11,19 @@ declare module 'solid-js' {
 const fonts =
 	'https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Lato:ital,wght@0,400;0,700;1,400&family=Montserrat+Alternates&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap';
 
+// Simple SVG favicon (bubble logo) as data URI so it works immediately
+const faviconSvg = `data:image/svg+xml,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="30" fill="#07070c"/>
+  <circle cx="26" cy="28" r="16" fill="#ff2d55" opacity="0.9"/>
+  <circle cx="38" cy="36" r="14" fill="#ff6b8a" opacity="0.85"/>
+  <circle cx="32" cy="22" r="10" fill="#ff9eb5" opacity="0.7"/>
+  <circle cx="18" cy="42" r="5" fill="#ff2d55" opacity="0.6"/>
+  <circle cx="46" cy="20" r="4" fill="#ff6b8a" opacity="0.5"/>
+  <circle cx="24" cy="24" r="3" fill="white" opacity="0.35"/>
+</svg>
+`)}`;
+
 export default function HeadContent() {
 	return (
 		<>
@@ -22,58 +35,19 @@ export default function HeadContent() {
 			<meta
 				name="theme-color"
 				media="(prefers-color-scheme: dark)"
-				content="#434c5e"
+				content="#ff2d55"
 			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="57x57"
-				href={route('assets/ico/apple-icon-57x57.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="60x60"
-				href={route('assets/ico/apple-icon-60x60.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="72x72"
-				href={route('assets/ico/apple-icon-72x72.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="76x76"
-				href={route('assets/ico/apple-icon-76x76.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="114x114"
-				href={route('assets/ico/apple-icon-114x114.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="120x120"
-				href={route('assets/ico/apple-icon-120x120.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="144x144"
-				href={route('assets/ico/apple-icon-144x144.png')}
-			/>
-			<link
-				rel="apple-touch-icon"
-				sizes="152x152"
-				href={route('assets/ico/apple-icon-152x152.png')}
-			/>
+			<meta name="theme-color" content="#ff2d55" />
+
+			{/* New bubble logo favicon (SVG works in all modern browsers) */}
+			<link rel="icon" href={faviconSvg} type="image/svg+xml" />
+			<link rel="apple-touch-icon" href={faviconSvg} />
+
+			{/* Keep old PNG fallbacks for older browsers / PWA (you can replace the actual PNG files later) */}
 			<link
 				rel="apple-touch-icon"
 				sizes="180x180"
 				href={route('assets/ico/apple-icon-180x180.png')}
-			/>
-			<link
-				rel="icon"
-				type="image/png"
-				sizes="192x192"
-				href={route('assets/ico/android-icon-192x192.png')}
 			/>
 			<link
 				rel="icon"
@@ -84,16 +58,11 @@ export default function HeadContent() {
 			<link
 				rel="icon"
 				type="image/png"
-				sizes="96x96"
-				href={route('assets/ico/favicon-96x96.png')}
-			/>
-			<link
-				rel="icon"
-				type="image/png"
 				sizes="16x16"
 				href={route('assets/ico/favicon-16x16.png')}
 			/>
 			<link rel="icon" href={route('assets/ico/favicon.ico')} />
+
 			<link rel="preconnect" href="https://fonts.googleapis.com" />
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 			<Inline>
