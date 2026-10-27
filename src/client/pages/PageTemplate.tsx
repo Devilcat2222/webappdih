@@ -19,7 +19,7 @@ export default function PageTemplate() {
 			</div>
 			<div id="background" class="fullwidth"></div>
 			<div id="mainbody" class="fullwidth">
-				<div class="box text-center"></div>
+				<div class="box text-center glass"></div>
 			</div>
 			<div id="footer" class="fullwidth">
 				<Footer />
@@ -32,7 +32,7 @@ export default function PageTemplate() {
 export function Head() {
 	return (
 		<>
-			<title>InvisiProxy LTS</title>
+			<title>r2r3</title>
 			<PageDescription />
 			<HeadContent />
 			<ParticlesScript />
