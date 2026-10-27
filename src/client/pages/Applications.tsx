@@ -46,7 +46,7 @@ export default function Applications() {
 			<div id="background" class="fullwidth"></div>
 			<Keywords />
 			<div data-aos="fade-right" class="hero-grid-container">
-				<div class="box-hero">
+				<div class="box-hero glass">
 					<div class="hero-content">
 						<div class="proxy-header text-center">
 							<h1 class="bigtitle">
@@ -106,7 +106,7 @@ export default function Applications() {
 export function Head() {
 	return (
 		<>
-			<title>{`InvisiProxy LTS | ${translate('header.apps.mobileLabel')}`}</title>
+			<title>{`r2r3 | ${translate('header.apps.mobileLabel')}`}</title>
 			<PageDescription />
 			<ProxyPreloads />
 			<HeadContent />
