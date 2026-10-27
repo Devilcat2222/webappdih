@@ -10,7 +10,7 @@ export default function Footer() {
 							href={route('/')}
 							title={translate('footer.homeTitle')}
 						>
-							InvisiProxy
+							r2r3
 						</a>
 					</h3>
 					<p>{translate('footer.tagline')}</p>
@@ -172,13 +172,8 @@ export default function Footer() {
 				</div>
 				<div class="footerlist">
 					<a href="#top" title={translate('footer.backToTop')}>
-						<span class="sr-only">
-							{translate('footer.backToTop')}
-						</span>
-						<i
-							class="fas fa-angle-double-up"
-							aria-hidden="true"
-						></i>
+						<span class="sr-only">{translate('footer.backToTop')}</span>
+						<i class="fas fa-angle-double-up" aria-hidden="true"></i>
 					</a>
 				</div>
 			</div>
@@ -189,9 +184,7 @@ export default function Footer() {
 					href={route('/github')}
 					title={translate('footer.followGithub')}
 				>
-					<span class="sr-only">
-						{translate('footer.followGithub')}
-					</span>
+					<span class="sr-only">{translate('footer.followGithub')}</span>
 					<i class="fab fa-github" aria-hidden="true"></i>
 				</a>
 				<a
@@ -200,9 +193,7 @@ export default function Footer() {
 					href={route('/patreon')}
 					title={translate('footer.patreonTitle')}
 				>
-					<span class="sr-only">
-						{translate('footer.patreonTitle')}
-					</span>
+					<span class="sr-only">{translate('footer.patreonTitle')}</span>
 					<i class="fab fa-patreon" aria-hidden="true"></i>
 				</a>
 				<a
@@ -211,13 +202,11 @@ export default function Footer() {
 					href={route('/kofi')}
 					title={translate('footer.followKofi')}
 				>
-					<span class="sr-only">
-						{translate('footer.followKofi')}
-					</span>
+					<span class="sr-only">{translate('footer.followKofi')}</span>
 					<i class="fas fa-coffee" aria-hidden="true"></i>
 				</a>
 			</div>
-			<p class="copyright">InvisiProxy LTS 2020-2026</p>
+			<p class="copyright">r2r3 2020-2026</p>
 		</>
 	);
 }
