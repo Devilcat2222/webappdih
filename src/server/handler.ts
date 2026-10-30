@@ -37,7 +37,7 @@ const securityHeaders: [string, string][] = [
 	['X-Content-Type-Options', 'nosniff'],
 	['X-DNS-Prefetch-Control', 'off'],
 	['X-Download-Options', 'noopen'],
-	['X-Frame-Options', 'SAMEORIGIN'],
+	// X-Frame-Options removed so the site can be embedded in iframes
 	['X-Permitted-Cross-Domain-Policies', 'none'],
 	['X-XSS-Protection', '0'],
 ];
